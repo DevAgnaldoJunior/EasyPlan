@@ -57,14 +57,11 @@ if st.button("Atualizar Datas e Carregar Planilhas"):
 
 if st.button("Executar Notebook"):
     try:
-        result = subprocess.run(
-            ["jupyter", "nbconvert", "--to", "notebook", "--execute", "app.ipynb"],
-            check=True,
-            text=True,
-            capture_output=True  # Captura stdout e stderr
-        )
-        st.success("Notebook executado com sucesso! Resultado da análise se encontra na pasta de downloads")
-    except subprocess.CalledProcessError as e:
-        st.error(f"Erro ao executar o notebook: {e.stderr}")  # Mostra o erro
-    except FileNotFoundError:
-        st.error("O executável do Jupyter não foi encontrado. Verifique a instalação do Jupyter.")
+        jupyter_command = f"{sys.executable} -m jupyter nbconvert --to notebook --execute app.ipynb"
+        result = subprocess.run(jupyter_command, shell=True, text=True, capture_output=True)
+        if result.returncode == 0:
+            st.success("Notebook executado com sucesso!")
+        else:
+            st.error(f"Erro ao executar o notebook: {result.stderr}")
+    except Exception as e:
+        st.error(f"Ocorreu um erro: {e}")
