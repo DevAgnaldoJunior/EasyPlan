@@ -59,9 +59,11 @@ if st.button("Executar Notebook"):
     try:
         jupyter_command = f"{sys.executable} -m jupyter nbconvert --to notebook --execute app.ipynb"
         result = subprocess.run(jupyter_command, shell=True, text=True, capture_output=True)
+        st.write(f"Caminho do Python: {sys.executable}")
+
         if result.returncode == 0:
             st.success("Notebook executado com sucesso!")
         else:
             st.error(f"Erro ao executar o notebook: {result.stderr}")
     except Exception as e:
-        st.error(f"Ocorreu um erro: {e}")
+        st.error(f"Ocorreu um erro: {e}, Comando: {jupyter_command}")
