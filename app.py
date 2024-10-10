@@ -56,8 +56,8 @@ if st.button("Atualizar Datas e Carregar Planilhas"):
 
 
 if st.button("Executar Notebook"):
-    try:
-        jupyter_command = f"{sys.executable} -m jupyter nbconvert --to notebook --execute app.ipynb"
+    jupyter_command = f"{sys.executable} -m jupyter nbconvert --to notebook --execute app.ipynb"
+    try: 
         result = subprocess.run(jupyter_command, shell=True, text=True, capture_output=True)
         st.write(f"Caminho do Python: {sys.executable}")
 
