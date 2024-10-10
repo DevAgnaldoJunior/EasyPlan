@@ -56,8 +56,9 @@ if st.button("Atualizar Datas e Carregar Planilhas"):
 
 
 if st.button("Executar Notebook"):
-    jupyter_command = f"{sys.executable} -m jupyter nbconvert --to notebook --execute app.ipynb"
-    try: 
+    jupyter_command = None  # Inicialize com None ou uma string vazia
+    try:
+        jupyter_command = f"{sys.executable} -m jupyter nbconvert --to notebook --execute app.ipynb"
         result = subprocess.run(jupyter_command, shell=True, text=True, capture_output=True)
         st.write(f"Caminho do Python: {sys.executable}")
 
@@ -67,3 +68,4 @@ if st.button("Executar Notebook"):
             st.error(f"Erro ao executar o notebook: {result.stderr}")
     except Exception as e:
         st.error(f"Ocorreu um erro: {e}, Comando: {jupyter_command}")
+
