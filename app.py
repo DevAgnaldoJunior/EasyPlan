@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import subprocess
 import base64
+import sys
 
 
 # Função para salvar dados em um arquivo JSON
