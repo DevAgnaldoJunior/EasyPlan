@@ -3,3 +3,4 @@ pandas
 openpyxl
 jupyter
 ipykernel
+python-docx
